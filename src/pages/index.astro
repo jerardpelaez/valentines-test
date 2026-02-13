@@ -404,8 +404,8 @@
 			}
 
 			@keyframes btnPulse {
-				0%, 100% { transform: scale(1); }
-				50% { transform: scale(1.05); }
+				0%, 100% { transform: scale(var(--yes-scale, 1)); }
+				50% { transform: scale(calc(var(--yes-scale, 1) * 1.05)); }
 			}
 
 			.btn-yes:hover {
@@ -431,17 +431,10 @@
 				color: #888;
 				cursor: pointer;
 				transition: all 0.3s ease;
-				position: relative;
 			}
 
 			.btn-no:hover {
 				background: #ccc;
-			}
-
-			.btn-no.running-away {
-				position: fixed;
-				z-index: 1000;
-				transition: all 0.3s ease;
 			}
 
 			/* ===== CELEBRATION SCREEN ===== */
@@ -895,41 +888,38 @@
 				launchConfetti();
 			});
 
-			// NO button - run away on hover
-			let noRunning = false;
+			// NO button - text changes + Yes grows
+			const noTexts = [
+				"No",
+				"Are you sure? 🥺",
+				"Really?? 😢",
+				"Think again... 💔",
+				"Please? 🥹",
+				"Don't do this to me 😭",
+				"I'll cry... 😿",
+				"You're breaking my heart 💔",
+				"Just say yes! 🙏",
+				"Pretty please?? 🌹",
+			];
+			let noClickCount = 0;
+			let yesScale = 1;
 
-			function moveNoButton() {
-				if (noRunning) return;
-				noRunning = true;
-
-				const btn = btnNo;
-				btn.classList.add('running-away');
-
-				const maxX = window.innerWidth - btn.offsetWidth - 20;
-				const maxY = window.innerHeight - btn.offsetHeight - 20;
-
-				const randomX = Math.floor(Math.random() * maxX);
-				const randomY = Math.floor(Math.random() * maxY);
-
-				btn.style.left = randomX + 'px';
-				btn.style.top = randomY + 'px';
-
-				setTimeout(() => { noRunning = false; }, 300);
-			}
-
-			btnNo.addEventListener('mouseenter', moveNoButton);
-			btnNo.addEventListener('touchstart', function(e) {
-				e.preventDefault();
-				moveNoButton();
-			});
-
-			// If somehow NO is clicked
 			btnNo.addEventListener('click', function() {
+				noClickCount++;
+
+				// Update No button text
+				const textIndex = Math.min(noClickCount, noTexts.length - 1);
+				btnNo.textContent = noTexts[textIndex];
+
+				// Grow the Yes button
+				yesScale += 0.15;
+				btnYes.style.setProperty('--yes-scale', yesScale);
+
+				// Show toast
 				wrongToast.classList.add('show');
 				setTimeout(() => {
 					wrongToast.classList.remove('show');
 				}, 2500);
-				moveNoButton();
 			});
 
 			// Confetti hearts launcher
