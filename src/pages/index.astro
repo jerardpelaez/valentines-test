@@ -9,7 +9,7 @@
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Will You Be My Valentine?</title>
+		<title>For Joana Marie - Will You Be My Valentine?</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet" />
@@ -285,6 +285,24 @@
 				}
 			}
 
+			.sub-greeting {
+				font-family: 'Quicksand', sans-serif;
+				font-size: 1.1rem;
+				font-weight: 300;
+				color: #ad1457;
+				opacity: 0;
+				animation: fadeInUp 1.2s ease forwards 1s;
+				letter-spacing: 2px;
+				text-transform: uppercase;
+				margin-bottom: 10px;
+			}
+
+			@media (min-width: 768px) {
+				.sub-greeting {
+					font-size: 1.3rem;
+				}
+			}
+
 			.question {
 				font-family: 'Dancing Script', cursive;
 				font-size: 2.5rem;
@@ -477,12 +495,27 @@
 				color: #ad1457;
 				opacity: 0;
 				animation: fadeInUp 1s ease forwards 0.8s;
-				margin-bottom: 30px;
+				margin-bottom: 15px;
 			}
 
 			@media (min-width: 768px) {
 				.celebration-sub {
 					font-size: 1.5rem;
+				}
+			}
+
+			.celebration-extra {
+				font-family: 'Dancing Script', cursive;
+				font-size: 1.4rem;
+				color: #c2185b;
+				opacity: 0;
+				animation: fadeInUp 1s ease forwards 1.3s;
+				margin-bottom: 30px;
+			}
+
+			@media (min-width: 768px) {
+				.celebration-extra {
+					font-size: 1.7rem;
 				}
 			}
 
@@ -703,7 +736,8 @@
 			</div>
 
 			<!-- Text -->
-			<h1 class="greeting">Hey, Beautiful...</h1>
+			<h1 class="greeting">Hey, Joana Marie...</h1>
+			<p class="sub-greeting">My beautiful fiancée</p>
 			<h2 class="question">Will You Be My Valentine?</h2>
 
 			<!-- Kissing Cats -->
@@ -837,8 +871,9 @@
 				</svg>
 			</div>
 
-			<h1 class="celebration-text">Yay! I love you!</h1>
-			<p class="celebration-sub">I knew you'd say yes! You just made me the happiest person ever!</p>
+			<h1 class="celebration-text">Yay! I love you, Joana Marie!</h1>
+			<p class="celebration-sub">I knew you'd say yes! You just made me the happiest fiancé ever!</p>
+			<p class="celebration-extra">Forever yours, my love &#128156;</p>
 		</div>
 
 		<!-- Wrong Answer Toast -->
