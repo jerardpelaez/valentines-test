@@ -4,5 +4,5 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://jerardpelaez.github.io',
-  base: '/valentine',
+  base: '/valentines-test',
 });
